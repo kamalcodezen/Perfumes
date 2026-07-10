@@ -1,3 +1,4 @@
+import UseTheme from "../../hooks/UseTheme";
 
 
 const HomePage = () => {
