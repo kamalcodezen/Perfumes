@@ -20,7 +20,7 @@ const FeatureCard = ({ feature, index }: FeatureCardProps) => {
 
   return (
     <div
-      className={`relative flex flex-col justify-between rounded-2xl border border-perf-border/80 bg-perf-card p-8 shadow-sm transition-transform duration-300 ease-in-out w-full min-h-[220px] ${offsetClasses}`}
+      className={`relative flex flex-col justify-between rounded-lg border border-perf-border/80 bg-perf-card p-8 shadow-sm transition-transform duration-300 ease-in-out w-full min-h-[220px] ${offsetClasses}`}
     >
       {/* Top Golden Accent Bar */}
       {isTopBar && (
