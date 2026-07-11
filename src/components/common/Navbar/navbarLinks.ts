@@ -3,7 +3,7 @@ export interface NavLinkItem {
   label: string;
 }
 
-export const navLinks: NavLinkItem[] = [
+export const navbarLinks: NavLinkItem[] = [
   {
     path: "/",
     label: "Home",
