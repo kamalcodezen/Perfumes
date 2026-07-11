@@ -1,122 +1,147 @@
-import { Link } from "react-router-dom";
-import { Eye, EyeOff, LockKeyhole, Mail } from "lucide-react";
 import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { Eye, EyeOff, LockKeyhole, Mail } from "lucide-react";
+import { toast } from "react-toastify";
+import { authClient } from "../../../lib/auth-client";
 
 const SignIn = () => {
+  const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
+  const [loading, setLoading] = useState(false);
+
+  // Form State
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+  });
+
+  // Handle Input Change
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  // Handle Form Submission with Better Auth
+  const handleSignIn = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    try {
+      setLoading(true);
+
+      const res = await authClient.signIn.email({
+        email: formData.email,
+        password: formData.password,
+      });
+
+      if (res.error) {
+        toast.error(res.error.message || "Invalid email or password");
+        console.error("Better Auth SignIn Error:", res.error);
+      } else {
+        toast.success("Signed in successfully");
+        navigate("/"); 
+      }
+    } catch (error: any) {
+      console.error("SignIn Exception Error:", error);
+      toast.error(
+        error?.message ||
+          "Server connection failed. Please check your backend.",
+      );
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
-    <section className="min-h-screen bg-perf-bg flex items-center justify-center px-6 py-10">
-      <div className="w-full max-w-6xl overflow-hidden rounded-3xl border border-perf-border bg-perf-card shadow-xl grid lg:grid-cols-2">
-        {/* Left Side */}
-        <div className="hidden lg:flex relative">
-          <img
-            src="/images/auth/login-banner.jpg"
-            alt="Luxury Perfume"
-            className="h-full w-full object-cover"
-          />
-
-          <div className="absolute inset-0 bg-black/45 flex flex-col justify-end p-12">
-            <h2 className="font-serif-luxury text-5xl font-bold text-white">
-              Welcome Back
-            </h2>
-
-            <p className="mt-4 max-w-md text-white/90 leading-8">
-              Discover premium fragrances crafted to elevate every moment.
-            </p>
-          </div>
+    <section className="min-h-screen bg-perf-bg flex items-center justify-center p-4 sm:p-6">
+      <div className="w-full max-w-md rounded-2xl border border-perf-border bg-perf-card p-6 sm:p-8 shadow-md">
+        {/* Header */}
+        <div className="text-center">
+          <h1 className="text-2xl font-bold text-perf-text-main font-serif-luxury">
+            Welcome Back
+          </h1>
+          <p className="mt-1.5 text-xs sm:text-sm text-perf-text-muted">
+            Enter your credentials to access your account
+          </p>
         </div>
 
-        {/* Right Side */}
-        <div className="flex items-center justify-center p-8 md:p-12">
-          <div className="w-full max-w-md">
-            <p className="uppercase tracking-[0.35em] text-perf-gold text-sm">
-              RossWell
-            </p>
+        {/* Form */}
+        <form onSubmit={handleSignIn} className="mt-6 space-y-4">
+          {/* Email */}
+          <div className="space-y-1.5">
+            <label className="text-xs font-semibold text-perf-text-main uppercase tracking-wider">
+              Email Address
+            </label>
+            <div className="flex items-center rounded-lg border border-perf-border bg-perf-input-bg px-3.5 py-2.5 transition focus-within:border-perf-gold">
+              <Mail size={16} className="text-perf-text-muted mr-2.5" />
+              <input
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                type="email"
+                placeholder="name@example.com"
+                required
+                className="w-full bg-transparent text-sm text-perf-text-main outline-none placeholder:text-perf-text-muted/60"
+              />
+            </div>
+          </div>
 
-            <h1 className="mt-3 text-4xl font-bold font-serif-luxury text-perf-text-main">
-              Sign In
-            </h1>
-
-            <p className="mt-3 text-perf-text-muted">
-              Sign in to continue your luxury fragrance journey.
-            </p>
-
-            <form className="mt-10 space-y-6">
-              {/* Email */}
-              <div>
-                <label className="mb-2 block text-sm font-medium">
-                  Email Address
-                </label>
-
-                <div className="flex items-center rounded-xl border border-perf-border bg-perf-input-bg px-4">
-                  <Mail size={18} className="text-perf-text-muted" />
-
-                  <input
-                    type="email"
-                    placeholder="Enter your email"
-                    className="w-full bg-transparent px-3 py-4 outline-none"
-                  />
-                </div>
-              </div>
-
-              {/* Password */}
-              <div>
-                <label className="mb-2 block text-sm font-medium">
-                  Password
-                </label>
-
-                <div className="flex items-center rounded-xl border border-perf-border bg-perf-input-bg px-4">
-                  <LockKeyhole size={18} className="text-perf-text-muted" />
-
-                  <input
-                    type={showPassword ? "text" : "password"}
-                    placeholder="Enter your password"
-                    className="w-full bg-transparent px-3 py-4 outline-none"
-                  />
-
-                  <button
-                    type="button"
-                    onClick={() => setShowPassword(!showPassword)}
-                  >
-                    {showPassword ? (
-                      <EyeOff size={20} className="text-perf-text-muted" />
-                    ) : (
-                      <Eye size={20} className="text-perf-text-muted" />
-                    )}
-                  </button>
-                </div>
-              </div>
-
-              {/* Remember */}
-              <div className="flex items-center justify-between text-sm">
-                <label className="flex items-center gap-2">
-                  <input type="checkbox" className="accent-perf-gold" />
-                  Remember me
-                </label>
-
-                <Link
-                  to="#"
-                  className="text-perf-gold hover:underline"
-                >
-                  Forgot Password?
-                </Link>
-              </div>
-
-              {/* Button */}
-              <button className="w-full rounded-xl bg-perf-gold py-4 font-semibold text-white transition hover:opacity-90">
-                SIGN IN
-              </button>
-            </form>
-
-            <p className="mt-8 text-center text-perf-text-muted">
-              Don't have an account?{" "}
-              <Link to="/auth/sign-up" className="font-semibold text-perf-gold">
-                Create Account
+          {/* Password */}
+          <div className="space-y-1.5">
+            <div className="flex items-center justify-between">
+              <label className="text-xs font-semibold text-perf-text-main uppercase tracking-wider">
+                Password
+              </label>
+              <Link
+                to="#"
+                className="text-xs text-perf-gold hover:underline"
+              >
+                Forgot?
               </Link>
-            </p>
+            </div>
+            <div className="flex items-center rounded-lg border border-perf-border bg-perf-input-bg px-3.5 py-2.5 transition focus-within:border-perf-gold">
+              <LockKeyhole size={16} className="text-perf-text-muted mr-2.5" />
+              <input
+                name="password"
+                value={formData.password}
+                onChange={handleChange}
+                type={showPassword ? "text" : "password"}
+                placeholder="••••••••"
+                required
+                className="w-full bg-transparent text-sm text-perf-text-main outline-none placeholder:text-perf-text-muted/60"
+              />
+              <button
+                type="button"
+                onClick={() => setShowPassword(!showPassword)}
+                className="text-perf-text-muted hover:text-perf-text-main transition ml-2"
+              >
+                {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
+              </button>
+            </div>
           </div>
-        </div>
+
+          {/* Submit Button */}
+          <button
+            type="submit"
+            disabled={loading}
+            className="w-full rounded-lg bg-perf-gold py-3 text-sm font-semibold text-white transition hover:opacity-95 disabled:opacity-60 cursor-pointer mt-2"
+          >
+            {loading ? "Signing In..." : "Sign In"}
+          </button>
+        </form>
+
+        {/* Footer */}
+        <p className="mt-6 text-center text-xs text-perf-text-muted">
+          Don't have an account?{" "}
+          <Link
+            to="/auth/signup"
+            className="font-semibold text-perf-gold hover:underline"
+          >
+            Sign Up
+          </Link>
+        </p>
       </div>
     </section>
   );
