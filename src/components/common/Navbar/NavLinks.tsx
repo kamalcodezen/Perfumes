@@ -12,11 +12,11 @@ const NavLinks = ({ to, children, onClick }: NavLinksProps) => {
       to={to}
       onClick={onClick}
       className={({ isActive }) =>
-        `text-base font-semibold px-4 py-2 rounded-lg transition-all duration-300
+        `text-base font-medium transition-colors duration-300 px-3 py-2 rounded-md select-none
         ${
           isActive
-            ? "text-white bg-perf-gold"
-            : "text-perf-text-main hover:text-perf-gold"
+            ? "text-[var(--perf-gold)] font-semibold underline decoration-2 underline-offset-8"
+            : "text-[var(--perf-text-muted)] hover:text-[var(--perf-text-main)]"
         }`
       }
     >
