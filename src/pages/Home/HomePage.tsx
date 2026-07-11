@@ -1,7 +1,9 @@
+import HeroCarousel from "../../components/home/Hero/HeroCarousel";
+
 const HomePage = () => {
   return (
     <>
-      <h2>Home Page</h2>
+      <HeroCarousel />
     </>
   );
 };
