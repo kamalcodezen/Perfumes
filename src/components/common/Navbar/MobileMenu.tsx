@@ -4,9 +4,6 @@ import UseTheme from "../../../hooks/UseTheme";
 import type { NavLinkItem } from "./navLinks";
 import Logo from "./Logo";
 
-
-
-
 interface MobileMenuProps {
   isOpen: boolean;
   setIsOpen: (isOpen: boolean) => void;
@@ -46,49 +43,61 @@ const MobileMenu = ({ isOpen, setIsOpen, links }: MobileMenuProps) => {
           </button>
         </div>
 
-        {/* Navigation */}
-        <div className="pt-4 flex-1 overflow-y-auto">
-          {links.map((link) => (
-            <div key={link.path} className="flex flex-col px-6">
-              <NavLink
-                onClick={() => setIsOpen(false)}
-                to={link.path}
-                className={({ isActive }) =>
-                  `text-base p-3 inline border-3 font-bold border-perf-border rounded-xl mt-3 transition-all duration-300 hover:bg-perf-text-muted/80 hover:text-white ${
-                    isActive ? "bg-perf-text-muted/80 text-white" : ""
-                  }`
-                }
-              >
-                {link.label}
-              </NavLink>
+        <div className="flex-1 flex flex-col justify-between overflow-y-auto pt-4">
+          {/* Top Navigation Links */}
+          <div className="flex flex-col space-y-1">
+            {links.map((link) => (
+              <div key={link.path} className="px-6">
+                <NavLink
+                  onClick={() => setIsOpen(false)}
+                  to={link.path}
+                  className={({ isActive }) =>
+                    `block text-base p-3 font-bold border-3 border-perf-border rounded-xl transition-all duration-300 hover:bg-perf-text-muted/80 hover:text-white ${
+                      isActive ? "bg-perf-text-muted/80 text-white" : ""
+                    }`
+                  }
+                >
+                  {link.label}
+                </NavLink>
+              </div>
+            ))}
+          </div>
+
+          {/* Bottom Section: Theme, CTA & Real World Text */}
+          <div className="mt-auto pt-6">
+            {/* Theme Toggle */}
+            <div className="mx-6 p-2.5 border-3 border-perf-border rounded-xl flex items-center justify-between">
+              <p className="text-base font-semibold">Appearance</p>
+              <UseTheme />
             </div>
-          ))}
-        </div>
 
-        {/* Theme Toggle */}
-        <div className="mx-6 p-2.5 border-3 border-perf-border rounded-xl flex items-center justify-between">
-          <p className="text-base font-semibold">Appearance</p>
+            {/* CTA Buttons */}
+            <div className="px-6 pt-3 pb-2 flex flex-col space-y-2.5 font-semibold">
+              <Link
+                to="/login"
+                onClick={() => setIsOpen(false)}
+                className="p-3 text-base border-3 border-perf-border rounded-xl text-center hover:bg-perf-text-muted/80 hover:text-white transition-all duration-300 cursor-pointer"
+              >
+                Login
+              </Link>
 
-          <UseTheme />
-        </div>
+              <Link
+                to="/register"
+                onClick={() => setIsOpen(false)}
+                className="p-3 text-base border-3 border-perf-border rounded-xl text-center bg-perf-gold text-white hover:opacity-90 transition-all duration-300 cursor-pointer"
+              >
+                Register
+              </Link>
+            </div>
 
-        {/* CTA Buttons */}
-        <div className="p-6 rounded-xl flex flex-col space-y-2.5 font-semibold mb-2">
-          <Link
-            to="/login"
-            onClick={() => setIsOpen(false)}
-            className="p-3 text-base border-3 border-perf-border rounded-xl text-center hover:bg-perf-text-muted/80 hover:text-white transition-all duration-300 cursor-pointer"
-          >
-            Login
-          </Link>
-
-          <Link
-            to="/register"
-            onClick={() => setIsOpen(false)}
-            className="p-3 text-base border-3 border-perf-border rounded-xl text-center bg-perf-gold text-white hover:opacity-90 transition-all duration-300 cursor-pointer"
-          >
-            Register
-          </Link>
+            {/* Small Real-World Luxury Footer Text */}
+            <div className="px-6 pb-6 text-center">
+              <p className="text-xs text-perf-text-muted/70 tracking-wide font-serif-luxury">
+                Crafted for Luxury & Elegance • RossWell ©{" "}
+                {new Date().getFullYear()}
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </>

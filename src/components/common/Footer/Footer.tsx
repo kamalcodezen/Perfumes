@@ -180,7 +180,7 @@ export default function Footer() {
         </div>
 
         {/* Bottom Copyright Bar */}
-        <div className="pt-8 border-t border-perf-border/40 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-perf-text-muted">
+        <div className="pt-8 border-t border-perf-border/40 flex flex-col sm:flex-row justify-between items-center gap-4 text-sm text-perf-text-muted">
           <p>
             © {new Date().getFullYear()} RossWell Perfumes. All rights reserved.
           </p>
