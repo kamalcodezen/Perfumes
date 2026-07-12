@@ -51,24 +51,24 @@ export const router = createBrowserRouter([
       },
 
       // User
-      {
-        path: "wishlist",
-        element: <Wishlist />,
-      },
+      // {
+      //   path: "wishlist",
+      //   element: <Wishlist />,
+      // },
 
       // Admin
-      {
-        path: "add-perfume",
-        element: <AddPerfume />,
-      },
-      {
-        path: "manage-perfumes",
-        element: <ManagePerfumes />,
-      },
-      {
-        path: "manage-users",
-        element: <ManageUsers />,
-      },
+      // {
+      //   path: "add-perfume",
+      //   element: <AddPerfume />,
+      // },
+      // {
+      //   path: "manage-perfumes",
+      //   element: <ManagePerfumes />,
+      // },
+      // {
+      //   path: "manage-users",
+      //   element: <ManageUsers />,
+      // },
     ],
   },
 ]);
