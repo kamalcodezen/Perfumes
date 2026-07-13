@@ -2,9 +2,9 @@ import { useEffect, useMemo, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Sparkles } from "lucide-react";
 
-import { getPerfumes } from "../../../lib/actions/perfume";
-import PerfumeCard from "../../shared/PerfumeCard";
+import { getPerfumes } from "../../../lib/api/perfume";
 import PerfumeFilter from "./PerfumeFilter";
+import PerfumeCard from "../../shared/PerfumeCard";
 
 interface Perfume {
   _id: string;
@@ -104,22 +104,6 @@ const AllPerfumes = () => {
     },
   };
 
-  const cardVariants = {
-    hidden: {
-      opacity: 0,
-      y: 25,
-    },
-    show: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        type: "spring",
-        stiffness: 120,
-        damping: 18,
-      },
-    },
-  };
-
   if (loading) {
     return (
       <div className="py-24 text-center text-perf-text-muted">
@@ -155,7 +139,7 @@ const AllPerfumes = () => {
             className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
           >
             {filteredPerfumes.map((perfume) => (
-              <motion.div key={perfume._id} variants={cardVariants} layout>
+              <motion.div key={perfume._id} layout>
                 <PerfumeCard perfume={perfume} />
               </motion.div>
             ))}

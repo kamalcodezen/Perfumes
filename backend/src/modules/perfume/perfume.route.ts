@@ -1,11 +1,12 @@
 import { Router } from "express";
-import {   addPerfumes } from "./perfume.controller.js";
-
+import { addPerfumes, getPerfumes } from "./perfume.controller.js";
 
 const router = Router();
 
+// add perfume
 router.post("/", addPerfumes);
 
-// router.get("/", getPerfumes);
+// get all perfumes
+router.get("/", getPerfumes);
 
 export default router;

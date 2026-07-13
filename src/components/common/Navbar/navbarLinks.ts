@@ -9,8 +9,8 @@ export const navbarLinks: NavLinkItem[] = [
     label: "Home",
   },
   {
-    path: "/collections",
-    label: "Collections",
+    path: "/all-perfumes",
+    label: "Perfumes",
   },
   {
     path: "/dashboard",

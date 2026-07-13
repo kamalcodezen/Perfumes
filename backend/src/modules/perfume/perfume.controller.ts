@@ -26,3 +26,17 @@ export const addPerfumes = async (req: Request, res: Response) => {
     });
   }
 };
+
+// all perfumes get
+export const getPerfumes = async (req: Request, res: Response) => {
+  try {
+    const result = await perfumeCollection.find().toArray();
+    res.json(result);
+  } catch (error: any) {
+    console.error(error);
+    res.status(500).json({
+      success: false,
+      message: "Failed to get perfumes",
+    });
+  }
+};

@@ -9,6 +9,7 @@ import DashboardLayout from "../layout/DashboardLayout";
 import DashboardHome from "../pages/dashboard/shared/DashboardHome";
 import Profile from "../pages/dashboard/shared/Profile";
 import AddPerfume from "../pages/dashboard/admin/AddPerfume";
+import Perfumes from "../pages/Perfumes/Perfumes";
 
 export const router = createBrowserRouter([
   {
@@ -19,6 +20,10 @@ export const router = createBrowserRouter([
       {
         index: true,
         element: <HomePage />,
+      },
+      {
+        path: "all-perfumes",
+        element: <Perfumes />,
       },
     ],
   },
