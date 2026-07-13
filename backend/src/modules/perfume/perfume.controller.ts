@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { database } from "../../db.js";
 import { IPerfume } from "./perfume.interface.js";
+import { ObjectId } from "mongodb";
 
 const perfumeCollection = database.collection<IPerfume>("perfumes");
 
@@ -37,6 +38,36 @@ export const getPerfumes = async (req: Request, res: Response) => {
     res.status(500).json({
       success: false,
       message: "Failed to get perfumes",
+    });
+  }
+};
+
+// get perfume by id
+export const getPerfumeById = async (
+  req: Request<{ id: string }>,
+  res: Response,
+) => {
+  try {
+    const { id } = req.params;
+
+    const perfume = await perfumeCollection.findOne({
+      _id: new ObjectId(id),
+    });
+
+    if (!perfume) {
+      return res.status(404).json({
+        success: false,
+        message: "Perfume not found",
+      });
+    }
+
+    return res.json(perfume);
+  } catch (error) {
+    console.error(error);
+
+    return res.status(500).json({
+      success: false,
+      message: "Failed to get perfume",
     });
   }
 };

@@ -1,5 +1,9 @@
 import { Router } from "express";
-import { addPerfumes, getPerfumes } from "./perfume.controller.js";
+import {
+  addPerfumes,
+  getPerfumeById,
+  getPerfumes,
+} from "./perfume.controller.js";
 
 const router = Router();
 
@@ -8,5 +12,8 @@ router.post("/", addPerfumes);
 
 // get all perfumes
 router.get("/", getPerfumes);
+
+// get perfume by id
+router.get("/:id", getPerfumeById);
 
 export default router;
