@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Button } from "@heroui/react";
 import { AlertTriangle, X } from "lucide-react";
 import { toast } from "react-toastify";
-import type { Perfume } from "../../../../types/perfume";
+import type { Perfume } from "../../../types/perfume";
 
 interface ConfirmDeleteModalProps {
   isOpen: boolean;

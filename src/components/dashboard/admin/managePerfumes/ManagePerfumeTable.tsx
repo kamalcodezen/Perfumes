@@ -17,7 +17,7 @@ const ManagePerfumeTable: React.FC<ManagePerfumeTableProps> = ({
   onDeleteClick,
 }) => {
   return (
-    <div className="rounded-3xl border border-perf-border/70 bg-perf-card/40 backdrop-blur-md overflow-hidden shadow-xl w-full">
+    <div className="rounded-lg border border-perf-border/70 bg-perf-card/40 backdrop-blur-md overflow-hidden  w-full min-h-screen">
       {loading ? (
         /* Loading State */
         <div className="flex flex-col items-center justify-center py-20 gap-3">
