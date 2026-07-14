@@ -1,12 +1,11 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { getPerfumes} from "../../../lib/api/perfume";
+import { getPerfumes } from "../../../lib/api/perfume";
 import { Plus, Search, Sparkles } from "lucide-react";
 import type { Perfume } from "../../../types/perfume";
-
-import ConfirmDeleteModal from "../../../components/shared/modals/ConfirmDeleteModal";
+import { deletePerfume } from "../../../lib/actions/perfume";
 import ManagePerfumeTable from "../../../components/dashboard/admin/managePerfumes/ManagePerfumeTable";
-
+import ConfirmDeleteModal from "../../../components/shared/modals/ConfirmDeleteModal";
 
 const ManagePerfumes = () => {
   const [perfumes, setPerfumes] = useState<Perfume[]>([]);
@@ -51,7 +50,7 @@ const ManagePerfumes = () => {
       setPerfumes((prev) => prev.filter((item) => item._id !== id));
       return { success: true };
     } catch (error) {
-      console.error("Failed to delete perfume:", error);
+      // console.error("Failed to delete perfume:", error);
       return { success: false, message: "Failed to delete the perfume item." };
     } finally {
       setDeletingId(null);
