@@ -11,17 +11,23 @@ import perfumeRoutes from "./modules/perfume/perfume.route.js";
 
 const app = express();
 
+// Ensure DB connects on requests (for Serverless)
+app.use(async (req, res, next) => {
+  await connectDB();
+  next();
+});
+
 app.use(
   cors({
-    origin: process.env.CLIENT_URL,
+    origin: process.env.CLIENT_URL || "http://localhost:5173",
     credentials: true,
   }),
 );
 
 app.use(express.json());
 
-// Better Auth
-app.all("/api/auth/{*any}", toNodeHandler(auth));
+// Better Auth Route
+app.all("/api/auth/*splat", toNodeHandler(auth));
 
 // API Routes
 app.use("/api/perfumes", perfumeRoutes);
@@ -34,14 +40,13 @@ app.get("/", (req, res) => {
   });
 });
 
-const PORT = process.env.PORT || 5000;
-
-const startServer = async () => {
-  await connectDB();
-
+// Local Development Engine
+if (process.env.NODE_ENV !== "production") {
+  const PORT = process.env.PORT || 5000;
   app.listen(PORT, () => {
     console.log(`🚀 Server running on ${PORT}`);
   });
-};
+}
 
-startServer();
+// Export for Vercel Serverless
+export default app;

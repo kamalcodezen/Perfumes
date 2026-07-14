@@ -11,20 +11,11 @@ import {
 } from "lucide-react";
 import { getUserSession } from "../../../lib/core/session";
 
-interface SessionUser {
-  id?: string;
-  name?: string;
-  email?: string;
-  role?: string;
-  image?: string;
-  avatar?: string;
-  emailVerified?: boolean;
-}
 
 const AdminProfileContent = () => {
   // Directly retrieve active session and user data without any state
   const session = getUserSession();
-  const currentUser: SessionUser | undefined = session?.user || session;
+  const currentUser = (session?.user || session) as any;
 
   const name = currentUser?.name || "Programming Hero";
   const email = currentUser?.email || "admin@gmail.com";
@@ -90,7 +81,9 @@ const AdminProfileContent = () => {
             <h2 className="text-lg font-bold font-serif-luxury text-perf-text-main flex items-center gap-2">
               <User size={18} className="text-perf-gold" /> Account Details
             </h2>
-            <span className="text-base text-perf-text-muted">Atelier Admin</span>
+            <span className="text-base text-perf-text-muted">
+              Atelier Admin
+            </span>
           </div>
 
           <form onSubmit={(e) => e.preventDefault()} className="space-y-5">

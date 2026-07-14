@@ -9,20 +9,11 @@ import {
 } from "lucide-react";
 import { getUserSession } from "../../../lib/core/session";
 
-interface SessionUser {
-  id?: string;
-  name?: string;
-  email?: string;
-  role?: string;
-  image?: string;
-  avatar?: string;
-  emailVerified?: boolean;
-}
 
 const UserProfileContent = () => {
   // Directly retrieve active session and user data without state
   const session = getUserSession();
-  const currentUser: SessionUser | undefined = session?.user || session;
+  const currentUser = (session?.user || session) as any;
 
   const name = currentUser?.name || "Fragrance Enthusiast";
   const email = currentUser?.email || "user@example.com";

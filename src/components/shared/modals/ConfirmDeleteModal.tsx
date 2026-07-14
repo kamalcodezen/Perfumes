@@ -80,8 +80,8 @@ const ConfirmDeleteModal: React.FC<ConfirmDeleteModalProps> = ({
           <div className="flex items-center justify-center gap-3 w-full pt-4 border-t border-border/40">
             <Button
               onClick={onClose}
-              variant="flat"
-              disabled={isDeleting}
+              variant="ghost"
+              isDisabled={isDeleting}
               className="btn-secondary h-11 px-5 font-bold text-lg sm:text-base cursor-pointer flex-1"
             >
               Cancel
@@ -89,7 +89,7 @@ const ConfirmDeleteModal: React.FC<ConfirmDeleteModalProps> = ({
 
             <Button
               onClick={handleConfirmDelete}
-              isLoading={isDeleting}
+              isDisabled={isDeleting}
               className="bg-red-500 hover:bg-red-600 text-white h-11 px-5 font-bold text-lg sm:text-base cursor-pointer flex-1 rounded-xl active:scale-95 transition-all shadow-md shadow-red-500/10"
             >
               {isDeleting ? "Deleting..." : "Yes, Delete"}

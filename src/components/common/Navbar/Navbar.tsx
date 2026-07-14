@@ -5,11 +5,11 @@ import Logo from "./Logo";
 import UseTheme from "../../../hooks/UseTheme";
 import MobileMenu from "./MobileMenu";
 import { navbarLinks } from "./navbarLinks";
-import NavLinks from "./navLinks";
 import { getUserSession } from "../../../lib/core/session";
 import { Link, useNavigate } from "react-router-dom";
 import { signOut } from "../../../lib/actions/signOut";
 import { toast } from "react-toastify";
+import NavLinks from "./NavLinks";
 
 const Navbar = () => {
   const navigate = useNavigate();

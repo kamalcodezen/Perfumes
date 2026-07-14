@@ -1,11 +1,11 @@
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { X } from "lucide-react";
 import UseTheme from "../../../hooks/UseTheme";
-import type { NavLinkItem } from "./navLinks";
 import Logo from "./Logo";
 import { getUserSession } from "../../../lib/core/session";
 import { signOut } from "../../../lib/actions/signOut";
 import { toast } from "react-toastify";
+import type { NavLinkItem } from "./navbarLinks";
 
 interface MobileMenuProps {
   isOpen: boolean;

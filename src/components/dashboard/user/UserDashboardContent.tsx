@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import {
   ShoppingBag,
-  Heart,
   Sparkles,
   Clock,
   ArrowRight,
@@ -12,14 +11,6 @@ import {
 } from "lucide-react";
 import { getUserSession } from "../../../lib/core/session";
 
-interface SessionUser {
-  id?: string;
-  name?: string;
-  email?: string;
-  role?: string;
-  image?: string;
-  avatar?: string;
-}
 
 // Mock user activities & purchases
 const recentOrders = [
@@ -44,7 +35,7 @@ const recentOrders = [
 const UserDashboardContent = () => {
   // Directly extract user data from session without extra state
   const session = getUserSession();
-  const currentUser: SessionUser | undefined = session?.user || session;
+  const currentUser = (session?.user || session) as any;
 
   const name = currentUser?.name || "Valued Fragrance Lover";
 

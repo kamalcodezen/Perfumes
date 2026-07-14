@@ -1,4 +1,4 @@
-import { Bell, Moon, Sun } from "lucide-react";
+import { Bell } from "lucide-react";
 // import { useLocation } from "react-router-dom";
 import { authClient } from "../../lib/auth-client";
 import UseTheme from "../../hooks/UseTheme";
@@ -43,7 +43,9 @@ const DashboardNavbar = () => {
                 {data?.user?.name}
               </h3>
 
-              <p className="text-xs text-perf-text-muted">{data?.user?.role}</p>
+              <p className="text-xs text-perf-text-muted">
+                {(data?.user as any)?.role}
+              </p>
             </div>
           </div>
         </div>
