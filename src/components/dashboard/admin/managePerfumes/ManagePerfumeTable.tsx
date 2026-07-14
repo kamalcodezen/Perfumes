@@ -71,7 +71,7 @@ const ManagePerfumeTable: React.FC<ManagePerfumeTableProps> = ({
                         <p className="font-bold text-perf-text-main line-clamp-1">
                           {perfume.title}
                         </p>
-                        <p className="text-[10px] text-perf-text-muted font-mono">
+                        <p className="text-[13px] text-perf-text-muted font-mono">
                           ID: {perfume._id.slice(-6)}
                         </p>
                       </div>
