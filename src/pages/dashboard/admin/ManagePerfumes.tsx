@@ -22,7 +22,7 @@ const ManagePerfumes = () => {
     try {
       setLoading(true);
       const data = await getPerfumes();
-      setPerfumes(Array.isArray(data) ? data : []);
+      setPerfumes(Array.isArray(data?.data) ? data?.data : []);
     } catch (error) {
       console.error("Error loading perfumes:", error);
     } finally {

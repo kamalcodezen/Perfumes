@@ -10,7 +10,7 @@ export const auth = betterAuth({
   emailAndPassword: {
     enabled: true,
   },
-  
+
   user: {
     additionalFields: {
       role: {
@@ -21,5 +21,18 @@ export const auth = betterAuth({
     },
   },
 
-  trustedOrigins: [process.env.CLIENT_URL!],
+  // Trusted Origins-এ লোকালহোসট ও Vercel URL
+  trustedOrigins: [
+    process.env.CLIENT_URL || "https://perfume-opal-sigma.vercel.app",
+    "http://localhost:5173",
+  ],
+
+  //  Vercel Cross-Site Cookie Fix 
+  advanced: {
+    useSecureCookies: process.env.NODE_ENV === "production",
+    defaultCookieAttributes: {
+      sameSite: "none", // ভিন্ন ডোমেইনের মধ্যে কুকি শেয়ার করতে এটি দরকার
+      secure: true, // HTTPS ব্রাউজারের জন্য বাধ্যতামূলক
+    },
+  },
 });

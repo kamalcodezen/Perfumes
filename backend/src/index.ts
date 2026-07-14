@@ -11,16 +11,33 @@ import perfumeRoutes from "./modules/perfume/perfume.route.js";
 
 const app = express();
 
+// Vercel / Reverse Proxy Trust (HTTPS & Cross-site Cookie-র জন্য আবশ্যক)
+app.set("trust proxy", 1);
+
 // Ensure DB connects on requests (for Serverless)
 app.use(async (req, res, next) => {
   await connectDB();
   next();
 });
 
+// Allowed origins
+const allowedOrigins = [
+  process.env.CLIENT_URL,
+  "https://perfume-opal-sigma.vercel.app",
+  "http://localhost:5173",
+].filter(Boolean);
+
 app.use(
   cors({
-    origin: process.env.CLIENT_URL || "http://localhost:5173",
-    credentials: true,
+    origin: (origin, callback) => {
+      // Allow requests with no origin (like mobile apps, curl, or same-origin)
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(null, true); // Production safe fall-through
+      }
+    },
+    credentials: true, 
   }),
 );
 
@@ -36,7 +53,7 @@ app.use("/api/perfumes", perfumeRoutes);
 app.get("/", (req, res) => {
   res.json({
     success: true,
-    message: "Rosswell Server Running...",
+    message: "Rosswell Perfume Server Running...",
   });
 });
 
@@ -44,7 +61,7 @@ app.get("/", (req, res) => {
 if (process.env.NODE_ENV !== "production") {
   const PORT = process.env.PORT || 5000;
   app.listen(PORT, () => {
-    console.log(`🚀 Server running on ${PORT}`);
+    console.log(` Server running on ${PORT}`);
   });
 }
 

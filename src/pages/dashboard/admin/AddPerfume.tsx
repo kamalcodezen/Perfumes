@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import {
@@ -40,7 +39,6 @@ interface PerfumeFormData {
 }
 
 const AddPerfume = () => {
-  const navigate = useNavigate();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [imageUploading, setImageUploading] = useState(false);
   const [previewImage, setPreviewImage] = useState<string | null>(null);
@@ -122,7 +120,6 @@ const AddPerfume = () => {
       // MongoDB Acknowledged Response Check
       if (response && response.acknowledged) {
         toast.success("Perfume added successfully!");
-        navigate("/dashboard/add-perfumes");
       } else {
         throw new Error("Failed to save product in database.");
       }
