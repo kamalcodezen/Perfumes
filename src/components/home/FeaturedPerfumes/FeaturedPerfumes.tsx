@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { getPerfumes } from "../../../lib/api/perfume";
 
-import { Sparkles, Loader2, ArrowRight } from "lucide-react";
+import { Sparkles, ArrowRight } from "lucide-react";
 import PerfumeCard from "../../shared/PerfumeCard";
 import PerfumeCardSkeleton from "../../shared/PerfumeCardSkeleton";
 
@@ -29,7 +29,9 @@ const FeaturedPerfumes = () => {
         const allPerfumes = await getPerfumes();
 
         // Slice the array to display only the top 6 featured items
-        setPerfumes(Array.isArray(allPerfumes) ? allPerfumes.slice(0, 6) : []);
+        setPerfumes(
+          Array.isArray(allPerfumes?.data) ? allPerfumes?.data.slice(0, 6) : [],
+        );
       } catch (error) {
         console.error("Error fetching featured perfumes:", error);
       } finally {
