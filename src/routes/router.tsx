@@ -34,7 +34,7 @@ export const router = createBrowserRouter([
         path: "perfumes/:id",
         element: (
           <ProtectedRoute>
-            <PerfumeDetails />,
+            <PerfumeDetails />
           </ProtectedRoute>
         ),
       },
@@ -97,7 +97,7 @@ export const router = createBrowserRouter([
         path: "add-perfume",
         element: (
           <ProtectedRoute>
-            <AddPerfume />,
+            <AddPerfume />
           </ProtectedRoute>
         ),
       },
@@ -105,7 +105,7 @@ export const router = createBrowserRouter([
         path: "manage-perfumes",
         element: (
           <ProtectedRoute>
-            <ManagePerfumes />,
+            <ManagePerfumes />
           </ProtectedRoute>
         ),
       },
