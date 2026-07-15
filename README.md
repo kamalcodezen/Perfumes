@@ -1,146 +1,105 @@
-# Rosswell Perfumes
+# RossWell
 
-A modern full-stack luxury perfume boutique that combines premium fragrance discovery, secure authentication, intelligent product exploration, and administrative inventory management into a seamless shopping experience.
+AI-powered luxury perfume e-commerce and catalog platform that unifies signature collections, advanced filtering, dynamic product details, performance analytics charts, and user/admin workflow controls.
 
----
+## 1. Project Title & Tagline
 
-# 1. Project Title & Tagline
+RossWell: a full-stack premium fragrance e-commerce suite built with a React frontend and an Express backend.
 
-### Rosswell Perfumes
+## 2. Problem Statement
 
-A production-ready full-stack luxury perfume e-commerce platform built with React, TypeScript, Express.js, MongoDB, Better Auth, and TanStack Query.
+The digital perfume shopping experience is usually fragmented across standard interfaces lacking luxury aesthetics, unified interactive animations, fast search-to-filter capabilities, and detailed scent profile diagnostics. This weakens consumer engagement and buying decisions.
+RossWell targets fragrance enthusiasts and administrators by providing one platform for:
 
----
+- Discovery (Artisan collection + signature showcases)
+- Customization (Dynamic theme-switching UI + quantitative controls)
+- Management (Admin product management + user analytics dashboards)
 
-# 2. Problem Statement
+## 3. Solution
 
-Online perfume shopping often suffers from outdated interfaces, limited product discovery, and fragmented management systems. Customers usually struggle to quickly discover fragrances that match their preferences, while administrators often lack an efficient way to organize and manage inventory.
-
-Rosswell Perfumes was built to provide a complete digital perfume boutique where customers can effortlessly discover premium fragrances and administrators can manage products through a dedicated dashboard.
-
-The platform provides:
-
-- Premium fragrance browsing
-- Intelligent product discovery
-- Secure authentication
-- Responsive shopping experience
-- Dedicated user and admin dashboards
-- Efficient inventory management
-
----
-
-# 3. Solution
-
-Rosswell Perfumes combines a modern React frontend with an Express.js REST API backed by MongoDB and Better Auth to deliver a fast, secure, and responsive shopping experience.
-
+RossWell combines a highly animated, responsive frontend interface with an asynchronous API route pipeline backed by MongoDB and modern session management via Better-Auth.
 At a high level:
 
-- Users authenticate securely using Better Auth.
-- Customers explore premium perfume collections.
-- Search, filtering, sorting, and infinite scrolling improve product discovery.
-- Protected dashboards separate customer and administrator functionality.
-- MongoDB stores perfume inventory and user information.
-- TanStack Query manages server state and optimizes API requests.
-- Skeleton loading improves perceived application performance.
+- Users authenticate via credentials or session tokens through `Better-Auth`.
+- The frontend tracks auth states dynamically to render secure routing structures.
+- Product pipelines ingest raw MongoDB entities to feed the dynamic catalog.
+- Global animation engines (`AOS`) eliminate interface rigidness across view layers.
+- Charting extensions (`Recharts`) process transactional or system metrics natively on dashboards.
 
----
+## 4. Key Features
 
-# 4. Key Features
+- High-fidelity product gallery with premium hardware-accelerated scroll animations.
+- Fixed floating capsule navigation architecture tailored dynamically for desktop and mobile displays.
+- Dynamic theme management (`UseTheme`) delivering persistence across viewport contexts.
+- Asynchronous data fetching architecture rendering granular scent profile accord breakdowns.
+- Fluid user quantitative selectors automatically updating total calculation fields.
+- Interactive analytics data visualization rendered as performance charts via `Recharts`.
+- Strict administrative control boundaries ensuring protected data mutations (Add/Delete entries).
+- Custom global application error handling system using typed error boundaries.
+- Native database integration handling inventory artifacts flawlessly under scalable data rules.
+- Complete 60fps scrolling optimization preventing UI layout reflows across structural sections.
 
-## Authentication
+## 5. Tech Stack
 
-- Better Auth Authentication
-- Email & Password Login
-- Secure Session Management
-- Protected Routes
-- Demo User Login
-- Demo Admin Login
+- **Frontend:** React 19, TypeScript, Tailwind CSS, React Router DOM (v7), HeroUI, Lucide React, Swiper.js.
+- **Backend:** Node.js, Express.js (v5.1.0 Engine Core), TypeScript, TSX Watch runtime.
+- **Datastores:**
+  - MongoDB via Native MongoDB Driver for core product inventory, user identities, and session persistence.
+- **Analytics:** Recharts for active user metrics and transactional system visualization.
+- **Auth:** Better-Auth (Credentials and persistent session engine management).
+- **Animations:** AOS (Animate On Scroll), Framer Motion.
 
----
+## 6. System Architecture
 
-## Customer Features
+- High-Level System
+- Backend Component View
+- Client Component Architecture
+- Data Flow Layer
 
-- Featured Perfumes
-- Browse All Perfumes
-- Advanced Search
-- Category Filtering
-- Gender Filtering
-- Product Sorting
-- Infinite Scroll Pagination
-- Product Details
-- Responsive User Experience
+## 7. Core Pipelines
 
----
+- **Catalog & Details Pipeline:**
+  - Product inquiry requested via custom dynamic routes.
+  - Data ingestion managed through `/api/perfumes/:id` API boundaries.
+  - Scent arrays validated and processed natively before rendering to the client interface.
+  - Viewport initialization launches custom structural entrance animations.
+- **Authentication & Route Guarding Flow:**
+  - Sessions verified securely inside frontend and backend context bridges.
+  - State conditions dictate structural links shown (`Navbar` routes adapt dynamically).
+  - Protected views check user roles before allowing entry to dashboard outlets.
+- **Inventory Management Pipeline:**
+  - Administrators execute write operations via protected component views.
+  - Data payloads pass directly into the backend MongoDB transaction layers.
+  - Dynamic re-fetching scripts execute automatically to update current catalog states.
 
-## User Dashboard
+## 8. Project Structure
 
-- Dashboard Overview
-- Profile Information
-- Account Management
+├── backend/ # Server-side TypeScript architecture
+│ ├── src/
+│ │ ├── modules/ # Business logic systems
+│ │ ├── auth.ts # Better-Auth initialization
+│ │ ├── db.ts # Native MongoDB anchor
+│ │ └── index.ts # Main API engine launch script
+│ ├── package.json
+│ └── tsconfig.json
+│
+├── src/ # Client-side React TypeScript application
+│ ├── components/ # UI elements (about, contact, common, home, dashboard)
+│ ├── hooks/ # Custom state hooks (UseTheme)
+│ ├── layout/ # Structural route shells (AuthLayout, DashboardLayout, RootLayout)
+│ ├── lib/ # Core API definitions and session modules
+│ ├── pages/ # Application page layouts (Home, Perfumes, Error)
+│ ├── types/ # Strict TypeScript declaration types
+│ ├── main.tsx # Client mount point
+│ └── index.css # Tailwind style engine targets
+├── package.json
+└── tsconfig.json
 
----
+## 9. How the System Works
 
-## Admin Dashboard
-
-- Dashboard Overview
-- Add New Perfume
-- Manage Perfumes
-- Delete Perfume
-- Inventory Management
-
----
-
-## User Experience
-
-- Fully Responsive Design
-- Skeleton Loading
-- Loading Indicators
-- Toast Notifications
-- Smooth Page Animations
-- Premium Luxury UI
-- Reusable Components
-
----
-
-# 5. Tech Stack
-
-## Frontend
-
-- React 19
-- TypeScript
-- React Router
-- Tailwind CSS
-- TanStack Query
-- Framer Motion
-- React Hook Form
-- React Toastify
-- Lucide React
-
----
-
-## Backend
-
-- Node.js
-- Express.js
-- TypeScript
-- Better Auth
-
----
-
-## Database
-
-- MongoDB Atlas
-
----
-
-## State Management
-
-- React Hooks
-- TanStack Query
-
----
-
-## Deployment
-
-- Frontend → Vercel
-- Backend → Vercel
+- User authenticates via the Better-Auth UI platform layout.
+- Active system profile states load securely into the unified component tree context.
+- User accesses premium boutique tools (Dynamic catalog exploration, wishlist tracking, checkout counters).
+- Admin workflows process system updates directly modifying backend database records.
+- Production UI layout modules maintain precise 3-color theme configurations for visual consistency.
+- Bundled application builds optimize bundle delivery metrics dynamically during hosting.
