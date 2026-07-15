@@ -1,13 +1,23 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Eye, EyeOff, LockKeyhole, Mail } from "lucide-react";
 import { toast } from "react-toastify";
 import { authClient } from "../../../lib/auth-client";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const SignIn = () => {
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
+
+  // Initialize AOS Animation
+  useEffect(() => {
+    AOS.init({
+      duration: 800,
+      once: true,
+    });
+  }, []);
 
   // Form State
   const [formData, setFormData] = useState({
@@ -24,9 +34,7 @@ const SignIn = () => {
     }));
   };
 
-  // ----------------------------------------------------
-  // Step 1: Demo Credentials Auto-Fill Handlers
-  // ----------------------------------------------------
+  // Demo Credentials Auto-Fill Handlers
   const handleDemoUser = () => {
     setFormData({
       email: "user@gmail.com",
@@ -54,14 +62,12 @@ const SignIn = () => {
       });
 
       if (res.error) {
-        // toast.error(res.error.message || "Invalid email or password");
         console.error("Better Auth SignIn Error:", res.error);
       } else {
         toast.success("Signed in successfully");
         navigate("/");
       }
     } catch (error: any) {
-      // console.error("SignIn Exception Error:", error);
       toast.error(
         error?.message ||
           "Server connection failed. Please check your backend.",
@@ -72,8 +78,12 @@ const SignIn = () => {
   };
 
   return (
-    <section className="min-h-screen bg-perf-bg flex items-center justify-center p-4 sm:p-6">
-      <div className="w-full max-w-md rounded-2xl border border-perf-border bg-perf-card p-6 sm:p-8 shadow-md">
+    <section className="min-h-screen bg-perf-bg flex items-center justify-center p-4 sm:p-6 overflow-hidden">
+      {/* Dynamic Flip-Right Card Container */}
+      <div
+        data-aos="flip-right"
+        className="w-full max-w-md rounded-2xl border border-perf-border bg-perf-card p-6 sm:p-8 shadow-md"
+      >
         {/* Header */}
         <div className="text-center">
           <h1 className="text-2xl font-bold text-perf-text-main font-serif-luxury">
@@ -145,9 +155,7 @@ const SignIn = () => {
             {loading ? "Signing In..." : "Sign In"}
           </button>
 
-          {/* ---------------------------------------------------- */}
-          {/* Step 2: Demo Login Buttons & Note                    */}
-          {/* ---------------------------------------------------- */}
+          {/* Demo Login Options */}
           <div className="pt-2">
             <div className="grid grid-cols-2 gap-3">
               <button
