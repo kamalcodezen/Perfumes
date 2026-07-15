@@ -1,7 +1,3 @@
-import { useEffect } from "react";
-import AOS from "aos";
-import "aos/dist/aos.css";
-
 import {
   FaFacebookF,
   FaInstagram,
@@ -12,22 +8,9 @@ import {
 } from "react-icons/fa6";
 
 const Newsletter = () => {
-  useEffect(() => {
-    // Initialize AOS scroll animation
-    AOS.init({
-      duration: 800,
-      once: true,
-      easing: "ease-in-out",
-    });
-  }, []);
-
   return (
     <section className="w-full text-perf-text-main py-10 px-6 border-y border-perf-border/80">
-      <div
-        data-aos="fade-up"
-        className="max-w-11/12 mx-auto flex flex-col lg:flex-row items-center justify-between gap-8"
-      >
-        {/* Left Column: Social Media Icons */}
+      <div className="max-w-11/12 mx-auto flex flex-col lg:flex-row items-center justify-between gap-8">
         <div className="flex flex-col items-center lg:items-start space-y-3">
           <span className="text-xs sm:text-sm font-bold uppercase tracking-wider text-perf-text-muted">
             Follow Us On Social Media
@@ -64,7 +47,6 @@ const Newsletter = () => {
           </div>
         </div>
 
-        {/* Middle Column: Email Newsletter Form */}
         <div className="flex flex-col items-center text-center space-y-3 w-full lg:w-auto max-w-lg">
           <span className="text-xs sm:text-sm font-bold uppercase tracking-wider text-perf-text-muted">
             Sign Up For Exclusive Email Offers & More
@@ -87,13 +69,11 @@ const Newsletter = () => {
           </form>
         </div>
 
-        {/* Right Column: QR Code & Mobile App Buttons */}
         <div className="flex flex-col items-center lg:items-end space-y-2">
           <span className="text-xs sm:text-sm font-bold uppercase tracking-wider text-perf-text-muted self-center lg:self-start">
             Get Our App
           </span>
           <div className="flex items-center gap-3">
-            {/* QR Code Container with Your Border Theme */}
             <div className="bg-white p-1.5 rounded-xl border border-perf-border shadow-sm">
               <img
                 src="https://api.qrserver.com/v1/create-qr-code/?size=65x65&data=https://rosswell.com"
@@ -102,7 +82,6 @@ const Newsletter = () => {
               />
             </div>
 
-            {/* App Store & Google Play Badges with Theme Border */}
             <div className="flex flex-col gap-1.5">
               <a
                 href="#"
