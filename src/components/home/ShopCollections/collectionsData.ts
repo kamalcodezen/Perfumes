@@ -14,18 +14,18 @@ export const collectionsData: CollectionItem[] = [
     id: 1,
     title: "SHOP WOMEN'S",
     image: womenBanner,
-    link: "/collections/women",
+    link: "/all-perfumes",
   },
   {
     id: 2,
     title: "SHOP MEN'S",
     image: menBanner,
-    link: "/collections/men",
+    link: "/all-perfumes",
   },
   {
     id: 3,
     title: "NEW ARRIVALS",
     image: arrivalBanner,
-    link: "/collections/new-arrivals",
+    link: "/all-perfumes",
   },
 ];
