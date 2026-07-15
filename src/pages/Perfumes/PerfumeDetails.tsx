@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { getPerfumesById } from "../../lib/api/perfume";
+import AOS from "aos";
+import "aos/dist/aos.css";
 import {
   Sparkles,
   ShoppingBag,
@@ -17,7 +19,6 @@ import {
   Plus,
 } from "lucide-react";
 
-// Perfume Type Interface
 interface Perfume {
   _id: string;
   title: string;
@@ -36,6 +37,14 @@ const PerfumeDetails = () => {
   const [loading, setLoading] = useState<boolean>(true);
   const [quantity, setQuantity] = useState<number>(1);
   const [isWishlisted, setIsWishlisted] = useState<boolean>(false);
+
+  useEffect(() => {
+    AOS.init({
+      duration: 1200,
+      once: true,
+      easing: "ease-out-cubic",
+    });
+  }, []);
 
   useEffect(() => {
     if (!id) return;
@@ -97,9 +106,11 @@ const PerfumeDetails = () => {
   } = perfume;
 
   return (
-    <section className="min-h-screen bg-perf-bg text-perf-text-main py-10 px-4 sm:px-6 lg:px-12">
+    <section
+      className="min-h-screen bg-perf-bg text-perf-text-main py-10 px-4 sm:px-6 lg:px-12 overflow-x-hidden mt-20"
+      data-aos="fade-up"
+    >
       <div className="max-w-11/12 mx-auto">
-        {/* Breadcrumb Navigation */}
         <nav className="flex items-center gap-2 text-xs text-perf-text-muted mb-8">
           <Link to="/" className="hover:text-perf-gold transition">
             Home
@@ -114,9 +125,7 @@ const PerfumeDetails = () => {
           </span>
         </nav>
 
-        {/* Main Product Showcase Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
-          {/* Left Column: Image Gallery Frame (5 Cols) */}
           <div className="lg:col-span-5 space-y-4">
             <div className="relative aspect-[4/5] w-full overflow-hidden rounded-3xl border border-perf-border/80 bg-perf-card shadow-2xl group">
               <img
@@ -125,7 +134,6 @@ const PerfumeDetails = () => {
                 className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
               />
 
-              {/* Floating Top Badges */}
               <div className="absolute inset-x-4 top-4 flex items-center justify-between">
                 <span className="backdrop-blur-md bg-black/60 border border-white/10 text-perf-gold px-3.5 py-1.5 rounded-full text-xs font-bold tracking-widest uppercase shadow-lg flex items-center gap-1.5">
                   <Sparkles size={13} />
@@ -149,7 +157,6 @@ const PerfumeDetails = () => {
                 </button>
               </div>
 
-              {/* Gender Tag Overlay */}
               <div className="absolute bottom-4 left-4">
                 <span className="bg-perf-card/90 backdrop-blur-md text-perf-text-muted text-[10px] uppercase font-bold tracking-widest px-3 py-1.5 rounded-lg border border-perf-border/60">
                   Target: {gender}
@@ -158,9 +165,7 @@ const PerfumeDetails = () => {
             </div>
           </div>
 
-          {/* Right Column: Information & Actions (7 Cols) */}
           <div className="lg:col-span-7 space-y-6">
-            {/* Header Title & Rating */}
             <div>
               <div className="flex items-center gap-2 mb-2">
                 <div className="flex items-center text-amber-400">
@@ -182,7 +187,6 @@ const PerfumeDetails = () => {
               </p>
             </div>
 
-            {/* Price Tag & Stock Status */}
             <div className="flex items-baseline gap-4 py-3 border-y border-perf-border/60">
               <span className="text-3xl sm:text-4xl font-black font-mono text-perf-gold">
                 ${(price * quantity).toFixed(2)}
@@ -192,7 +196,6 @@ const PerfumeDetails = () => {
               </span>
             </div>
 
-            {/* Scent Notes Profile Banner (if available) */}
             {scentNotes && (
               <div className="bg-perf-card border border-perf-border/80 rounded-2xl p-4 space-y-1.5 shadow-sm">
                 <span className="text-[11px] font-bold uppercase tracking-widest text-perf-gold flex items-center gap-1.5">
@@ -204,7 +207,6 @@ const PerfumeDetails = () => {
               </div>
             )}
 
-            {/* Full Overview Story */}
             <div className="space-y-2">
               <h3 className="text-xs font-bold uppercase tracking-widest text-perf-text-muted">
                 Fragrance Overview
@@ -214,10 +216,8 @@ const PerfumeDetails = () => {
               </p>
             </div>
 
-            {/* Quantity Selector & Add To Cart CTA */}
             <div className="space-y-4 pt-2">
               <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
-                {/* Quantity Control */}
                 <div className="flex items-center justify-between border border-perf-border rounded-xl bg-perf-input-bg p-1.5 w-full sm:w-36">
                   <button
                     type="button"
@@ -236,7 +236,6 @@ const PerfumeDetails = () => {
                   </button>
                 </div>
 
-                {/* Add to Cart Button */}
                 <button
                   type="button"
                   className="flex-1 flex items-center justify-center gap-2 bg-perf-gold hover:opacity-90 text-white font-bold py-3.5 px-6 rounded-xl transition duration-300 shadow-lg cursor-pointer text-sm tracking-wider uppercase"
@@ -247,7 +246,6 @@ const PerfumeDetails = () => {
               </div>
             </div>
 
-            {/* Trust Badges */}
             <div className="grid grid-cols-3 gap-3 pt-6 border-t border-perf-border/60">
               <div className="flex flex-col items-center text-center p-3 rounded-xl bg-perf-card/40 border border-perf-border/40">
                 <ShieldCheck size={20} className="text-perf-gold mb-1" />
