@@ -15,6 +15,7 @@ import About from "../pages/About/About";
 import ManagePerfumes from "../pages/dashboard/admin/ManagePerfumes";
 import ContactPage from "../pages/Contact/ContactPage";
 import ProtectedRoute from "../components/shared/ProtectedRoute";
+import ManageUsers from "../pages/dashboard/admin/ManageUsers";
 
 export const router = createBrowserRouter([
   {
@@ -109,10 +110,10 @@ export const router = createBrowserRouter([
           </ProtectedRoute>
         ),
       },
-      // {
-      //   path: "manage-users",
-      //   element: <ManageUsers />,
-      // },
+      {
+        path: "manage-users",
+        element: <ManageUsers />,
+      },
     ],
   },
 
