@@ -32,7 +32,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="fixed top-0 left-0 w-full z-[100] transition-all duration-300 bg-black/90 backdrop-blur py-3">
+    <nav className="fixed top-3 left-1/2 -translate-x-1/2 w-full max-w-11/12 z-[100] transition-all duration-300 bg-perf-card/90 dark:bg-perf-card/80 backdrop-blur-md border border-perf-border/60 rounded-xl shadow-lg py-2.5 px-2">
       <div className="max-w-11/12 mx-auto flex flex-col gap-3">
         {/* 1. Desktop Only Top Title (Logo Image Alignment Fixed)
         <div className="hidden md:flex justify-center items-center">

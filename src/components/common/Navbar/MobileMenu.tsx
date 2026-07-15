@@ -45,7 +45,7 @@ const MobileMenu = ({ isOpen, setIsOpen, links }: MobileMenuProps) => {
         className={`fixed top-0 left-0 h-screen w-[80%] max-w-[350px] z-[100] bg-perf-bg transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] will-change-transform flex flex-col ${
           isOpen
             ? "translate-x-0 shadow-[10px_0_40px_rgba(0,0,0,0.3)]"
-            : "-translate-x-full"
+            : "-translate-x-[240%]"
         }`}
       >
         {/* Drawer Header */}
